@@ -5,11 +5,7 @@
   <img src="https://img.shields.io/badge/license-MIT-green" alt="Лицензия" />
   <img src="https://img.shields.io/badge/platform-Windows-blue" alt="Платформа" />
   <img src="https://img.shields.io/badge/.NET-6.0-orange" alt=".NET" />
-  <img src="https://img.shields.io/github/actions/workflow/status/username/sharpvless/build.yml?branch=main" alt="CI/CD" />
-</p>
-
-<p align="center">
-  <img src="https://i.imgur.com/5XcF2qL.png" alt="Скриншот интерфейса" width="500"/>
+  <img src="https://img.shields.io/github/actions/workflow/status/Trytonottry/sharpvless/build.yml?branch=main" alt="CI/CD" />
 </p>
 
 > **SharpVLESS** — легковесный, open-source VLESS-клиент для Windows с поддержкой **WebSocket, TLS, REALITY**, локальным **SOCKS5-прокси** и интуитивным интерфейсом.  
