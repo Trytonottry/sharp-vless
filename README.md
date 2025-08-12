@@ -32,7 +32,7 @@
 
 ### Вариант 1: Готовый установщик (рекомендуется)
 
-1. Скачайте последнюю версию с [Releases](https://github.com/Trytonottry/sharpvless/releases)
+1. Скачайте последнюю версию с [Releases](https://github.com/Trytonottry/sharp-vless/releases)
 2. Запустите `SharpVLESS-Setup.exe`
 3. Готово! Ярлык появится на рабочем столе.
 
@@ -102,7 +102,7 @@ SharpVLESS/
 ## 📦 Сборка из исходников
 
 ```bash
-git clone https://github.com/Trytonottry/sharpvless.git
+git clone https://github.com/Trytonottry/sharp-vless.git
 cd sharpvless
 dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
 ```
@@ -112,7 +112,7 @@ bin/Release/net6.0-windows/win-x64/publish/SharpVLESS.exe
 
 ## 📄 Лицензия 
 
-MIT © [TryToNotTry] 
+MIT © TryToNotTry 
 
 Свободно используй, модифицируй, распространяй — с указанием авторства. 
  
