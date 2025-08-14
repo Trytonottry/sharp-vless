@@ -1,4 +1,4 @@
-name: Build Windows EXE
+name: Build sharp-vless.exe
 
 on:
   release:
@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build sharp-vless.exe
+  build-windows:
+    name: Build Windows EXE
     runs-on: windows-latest
 
     steps:
@@ -22,8 +22,8 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Publish Self-Contained Win-x64
-  run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
+      - name: Publish Self-Contained Win-x64 (No Trim!)
+        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
 
       - name: Zip Artifact
         run: Compress-Archive -Path "./publish/*" -DestinationPath "sharp-vless-windows-x64.zip"
@@ -35,7 +35,7 @@ jobs:
           path: sharp-vless-windows-x64.zip
           retention-days: 30
 
-      - name: Upload to Release
+      - name: Upload to GitHub Release
         if: github.event_name == 'release'
         uses: svenstaro/upload-release-action@v2
         with:
