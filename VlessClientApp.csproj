@@ -1,8 +1,16 @@
-<!-- В .csproj -->
-<PropertyGroup>
-  <TargetFramework>net6.0-windows</TargetFramework>
-  <UseWPF>true</UseWPF>
-</PropertyGroup>
-<!-- В .csproj -->
-<PackageReference Include="System.Windows.Forms" Version="6.0.0" />
-<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Windows.Forms" Version="6.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>
