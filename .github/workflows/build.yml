@@ -41,7 +41,7 @@ jobs:
           overwrite: true
 
   build-linux:
-    name: Build Linux x64
+    name: Build Linux x64 (Windows-targeted app)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,34 +51,21 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Publish Self-Contained Linux-x64
-        run: dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:EnableCompressionInSingleFile=true -o ./publish
+      - name: Publish Self-Contained Win-x64 (Linux host)
+        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableWindowsTargeting=true -o ./publish
 
-      - name: Make executable
-        run: chmod +x ./publish/sharp-vless
-
-      - name: Tar Artifact
-        run: tar -czf sharp-vless-linux-x64.tar.gz -C ./publish .
+      - name: Zip Artifact
+        run: zip -r sharp-vless-windows-x64-linux-build.zip ./publish/*
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sharp-vless-linux-x64
-          path: sharp-vless-linux-x64.tar.gz
+          name: sharp-vless-windows-x64-from-linux
+          path: sharp-vless-windows-x64-linux-build.zip
           retention-days: 30
 
-      - name: Upload to Release
-        if: github.event_name == 'release'
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: sharp-vless-linux-x64.tar.gz
-          asset_name: sharp-vless-linux-x64.tar.gz
-          tag: ${{ github.ref }}
-          overwrite: true
-
   build-macos:
-    name: Build macOS x64
+    name: Build macOS (Windows-targeted app)
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -88,28 +75,15 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Publish Self-Contained macOS-x64
-        run: dotnet publish -c Release -r osx-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:EnableCompressionInSingleFile=true -o ./publish
+      - name: Publish Self-Contained Win-x64 (macOS host)
+        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableWindowsTargeting=true -o ./publish
 
-      - name: Make executable
-        run: chmod +x ./publish/sharp-vless
-
-      - name: Tar Artifact
-        run: tar -czf sharp-vless-macos-x64.tar.gz -C ./publish .
+      - name: Zip Artifact
+        run: zip -r sharp-vless-windows-x64-macos-build.zip ./publish/*
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: sharp-vless-macos-x64
-          path: sharp-vless-macos-x64.tar.gz
+          name: sharp-vless-windows-x64-from-macos
+          path: sharp-vless-windows-x64-macos-build.zip
           retention-days: 30
-
-      - name: Upload to Release
-        if: github.event_name == 'release'
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: sharp-vless-macos-x64.tar.gz
-          asset_name: sharp-vless-macos-x64.tar.gz
-          tag: ${{ github.ref }}
-          overwrite: true
