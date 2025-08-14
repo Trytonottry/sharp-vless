@@ -1,4 +1,4 @@
-name: Build Cross-Platform Releases
+name: Build Windows EXE
 
 on:
   release:
@@ -6,22 +6,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-windows:
-    name: Build Windows x64
+  build:
+    name: Build sharp-vless.exe
     runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup .NET 6
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.x'
 
-      - name: Publish Self-Contained Win-x64
-        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Publish Self-Contained Win-x64 (No Trim!)
+        run: |
+          dotnet publish -c Release \
+            -r win-x64 \
+            --self-contained true \
+            -p:PublishSingleFile=true \
+            -p:IncludeNativeLibrariesForSelfExtract=true \
+            -o ./publish
 
       - name: Zip Artifact
-        run: Compress-Archive -Path "./publish/*" -DestinationPath "sharp-vless-windows-x64.zip"
+        run: |
+          Compress-Archive -Path "./publish/*" -DestinationPath "sharp-vless-windows-x64.zip"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -39,51 +51,3 @@ jobs:
           asset_name: sharp-vless-windows-x64.zip
           tag: ${{ github.ref }}
           overwrite: true
-
-  build-linux:
-    name: Build Linux x64 (Windows-targeted app)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup .NET 6
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0.x'
-
-      - name: Publish Self-Contained Win-x64 (Linux host)
-        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableWindowsTargeting=true -o ./publish
-
-      - name: Zip Artifact
-        run: zip -r sharp-vless-windows-x64-linux-build.zip ./publish/*
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: sharp-vless-windows-x64-from-linux
-          path: sharp-vless-windows-x64-linux-build.zip
-          retention-days: 30
-
-  build-macos:
-    name: Build macOS (Windows-targeted app)
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup .NET 6
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '6.0.x'
-
-      - name: Publish Self-Contained Win-x64 (macOS host)
-        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:IncludeNativeLibrariesForSelfExtract=true -p:EnableWindowsTargeting=true -o ./publish
-
-      - name: Zip Artifact
-        run: zip -r sharp-vless-windows-x64-macos-build.zip ./publish/*
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: sharp-vless-windows-x64-from-macos
-          path: sharp-vless-windows-x64-macos-build.zip
-          retention-days: 30
