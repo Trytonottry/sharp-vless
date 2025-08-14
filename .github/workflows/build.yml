@@ -1,5 +1,7 @@
 # .github/workflows/build-all.yml
 
+# .github/workflows/build-all.yml
+
 name: Build Cross-Platform Releases
 
 on:
@@ -34,10 +36,11 @@ jobs:
           Compress-Archive -Path "./publish/*" -DestinationPath "sharp-vless-windows-x64.zip"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # ✅ Обновлено с v3 на v4
         with:
           name: sharp-vless-windows-x64
           path: sharp-vless-windows-x64.zip
+          retention-days: 30
 
       - name: Upload to Release
         if: github.event_name == 'release'
@@ -79,10 +82,11 @@ jobs:
           tar -czf sharp-vless-linux-x64.tar.gz -C ./publish .
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # ✅ Обновлено
         with:
           name: sharp-vless-linux-x64
           path: sharp-vless-linux-x64.tar.gz
+          retention-days: 30
 
       - name: Upload to Release
         if: github.event_name == 'release'
@@ -124,10 +128,11 @@ jobs:
           tar -czf sharp-vless-macos-x64.tar.gz -C ./publish .
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # ✅ Обновлено
         with:
           name: sharp-vless-macos-x64
           path: sharp-vless-macos-x64.tar.gz
+          retention-days: 30
 
       - name: Upload to Release
         if: github.event_name == 'release'
