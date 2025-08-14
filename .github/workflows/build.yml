@@ -22,14 +22,8 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Publish Self-Contained Win-x64 (No Trim!)
-        run: |
-          dotnet publish -c Release \
-            -r win-x64 \
-            --self-contained true \
-            -p:PublishSingleFile=true \
-            -p:IncludeNativeLibrariesForSelfExtract=true \
-            -o ./publish
+      - name: Publish Self-Contained Win-x64
+  run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
 
       - name: Zip Artifact
         run: |
