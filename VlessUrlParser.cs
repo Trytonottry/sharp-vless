@@ -25,20 +25,20 @@ public static class VlessUrlParser
 
             if (!string.IsNullOrEmpty(uri.Query))
             {
-                var query = HttpUtility.ParseQueryString(uri.Query);
+              var query = QueryHelpers.ParseQuery(uri.Query);
 
-                config.Sni = query["sni"] ?? uri.Host;
-                config.Host = query["host"] ?? config.Sni;
-                config.Path = query["path"] ?? "/vless";
-                config.AllowInsecure = query["allowInsecure"] == "1" || query["security"] == "insecure";
-                config.Security = query["security"] ?? "tls";
+            config.Sni = query["sni"].FirstOrDefault() ?? uri.Host;
+            config.Host = query["host"].FirstOrDefault() ?? config.Sni;
+            config.Path = query["path"].FirstOrDefault() ?? "/vless";
+            config.AllowInsecure = query["allowInsecure"] == "1" || query["security"] == "insecure";
+            config.Security = query["security"].FirstOrDefault() ?? "tls";
 
-                config.PublicKey = query["pbk"] ?? string.Empty;
-                config.ShortId = query["sid"] ?? string.Empty;
-                config.Fingerprint = query["fp"] ?? "chrome";
-                config.SpiderX = query["spx"] ?? string.Empty;
-                config.Flow = query["flow"] ?? string.Empty;
-                config.Type = query["type"] ?? "ws";
+            config.PublicKey = query["pbk"].FirstOrDefault() ?? string.Empty;
+            config.ShortId = query["sid"].FirstOrDefault() ?? string.Empty;
+            config.Fingerprint = query["fp"].FirstOrDefault() ?? "chrome";
+            config.SpiderX = query["spx"].FirstOrDefault() ?? string.Empty;
+            config.Flow = query["flow"].FirstOrDefault() ?? string.Empty;
+            config.Type = query["type"].FirstOrDefault() ?? "ws";
             }
 
             return config;
