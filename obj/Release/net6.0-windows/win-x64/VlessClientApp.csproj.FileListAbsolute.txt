@@ -1,0 +1,10 @@
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/VlessClientApp.csproj.AssemblyReference.cache
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/MainWindow.baml
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/MainWindow.g.cs
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/App.g.cs
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/VlessClientApp_MarkupCompile.cache
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/VlessClientApp.g.resources
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/VlessClientApp.GeneratedMSBuildEditorConfig.editorconfig
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/VlessClientApp.AssemblyInfoInputs.cache
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/VlessClientApp.AssemblyInfo.cs
+/home/moriarty/Documents/XCode/SharpVLESS/obj/Release/net6.0-windows/win-x64/VlessClientApp.csproj.CoreCompileInputs.cache

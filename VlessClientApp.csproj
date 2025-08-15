@@ -10,11 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="System.Web.Extensions" Version="4.0.0" />
   </ItemGroup>
 
 </Project>

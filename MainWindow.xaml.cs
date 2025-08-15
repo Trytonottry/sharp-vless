@@ -3,6 +3,9 @@ using System.Windows;
 using MessageBox = System.Windows.MessageBox;
 using System.Text; // для StringBuilder
 using System.Windows.Media; // для SolidColorBrush
+using System.IO;                    // для File
+using System.Web;                   // для HttpUtility     
+using System.Net.Sockets;           // для NetworkStream
 
 namespace VlessClientApp
 {
