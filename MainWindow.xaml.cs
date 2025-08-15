@@ -1,5 +1,8 @@
 using System;
 using System.Windows;
+using MessageBox = System.Windows.MessageBox;
+using System.Text; // для StringBuilder
+using System.Windows.Media; // для SolidColorBrush
 
 namespace VlessClientApp
 {
