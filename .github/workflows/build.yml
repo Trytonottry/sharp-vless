@@ -20,10 +20,10 @@ jobs:
           dotnet-version: '6.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore VlessClientApp.csproj
 
-      - name: Publish Self-Contained Win-x64 (No Trim!)
-        run: dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
+      - name: Publish Self-Contained Win-x64
+        run: dotnet publish VlessClientApp.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish
 
       - name: Zip Artifact
         run: Compress-Archive -Path "./publish/*" -DestinationPath "sharp-vless-windows-x64.zip"
