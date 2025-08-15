@@ -1,4 +1,4 @@
-using System.Windows;
+using Application = System.Windows.Application;
 
 public partial class App : Application
 {
