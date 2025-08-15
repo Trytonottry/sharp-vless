@@ -7,17 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <EnableDefaultPageItems>false</EnableDefaultPageItems>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- ВАЖНО: добавляем MainWindow.xaml как Page -->
-    <Page Include="MainWindow.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
