@@ -1,53 +1,73 @@
+// VlessUrlParser.cs
 using System;
+using System.Collections.Specialized;
+using System.Globalization;
 using System.Web;
+
+public class VlessConfig
+{
+    public string UserId { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
+    public int Port { get; set; }
+    public string Sni { get; set; } = string.Empty;
+    public string Host { get; set; } = string.Empty;
+    public string Path { get; set; } = "/vless";
+    public bool AllowInsecure { get; set; }
+    public string Security { get; set; } = "tls";
+    public string PublicKey { get; set; } = string.Empty;
+    public string ShortId { get; set; } = string.Empty;
+    public string Fingerprint { get; set; } = "chrome";
+    public string SpiderX { get; set; } = string.Empty;
+    public string Flow { get; set; } = string.Empty;
+    public string Type { get; set; } = "ws"; // "ws" или "grpc"
+}
 
 public static class VlessUrlParser
 {
     public static VlessConfig Parse(string vlessUrl)
     {
+        if (string.IsNullOrWhiteSpace(vlessUrl))
+            throw new ArgumentException("Ссылка VLESS не может быть пустой");
+
         try
         {
             var uri = new Uri(vlessUrl);
+            if (!uri.Scheme.Equals("vless", StringComparison.OrdinalIgnoreCase))
+                throw new ArgumentException("Ожидается схема vless://");
+
             var config = new VlessConfig();
 
             config.UserId = uri.UserInfo;
             config.Address = uri.Host;
-            config.Port = uri.Port;
+            config.Port = uri.Port > 0 ? uri.Port : 443;
 
-            var query = HttpUtility.ParseQueryString(uri.Query);
+            if (!string.IsNullOrEmpty(uri.Query))
+            {
+                var query = HttpUtility.ParseQueryString(uri.Query);
 
-            config.Sni = query["sni"] ?? uri.Host;
-            config.Host = query["host"] ?? config.Sni;
-            config.Path = query["path"] ?? "/vless";
-            config.AllowInsecure = query["allowInsecure"] == "1" || query["security"] == "insecure";
-            config.Security = query["security"] ?? "tls";
+                config.Sni = query["sni"] ?? uri.Host;
+                config.Host = query["host"] ?? config.Sni;
+                config.Path = query["path"] ?? "/vless";
+                config.AllowInsecure = query["allowInsecure"] == "1" || query["security"] == "insecure";
+                config.Security = query["security"] ?? "tls";
 
-            config.PublicKey = query["pbk"];
-            config.ShortId = query["sid"];
-            config.Fingerprint = query["fp"] ?? "chrome";
-            config.SpiderX = query["spx"];
-            config.Flow = query["flow"] ?? "";
+                config.PublicKey = query["pbk"] ?? string.Empty;
+                config.ShortId = query["sid"] ?? string.Empty;
+                config.Fingerprint = query["fp"] ?? "chrome";
+                config.SpiderX = query["spx"] ?? string.Empty;
+                config.Flow = query["flow"] ?? string.Empty;
+                config.Type = query["type"] ?? "ws";
+            }
 
             return config;
         }
+        catch (UriFormatException)
+        {
+            throw new ArgumentException("Неверный формат URL");
+        }
         catch (Exception ex)
         {
-            throw new ArgumentException("Неверный формат ссылки VLESS", ex);
+            throw new ArgumentException("Ошибка при парсинге ссылки VLESS", ex);
         }
     }
-}
-
-public static VlessClientHandler.ConnectAsync()
-{
-    Uri uri;
-if (_config.Type == "grpc")
-{
-    var authority = _config.Host != "" ? _config.Host : _config.Sni;
-    var headers = $"\"Grpc-Timeout\",\"15s\",\"Host\",\"{authority}\"";
-    uri = new Uri($"wss://{_config.Address}:{_config.Port}/VLessTun?ed=2048");
-}
-else // ws
-{
-    uri = new Uri($"wss://{_config.Address}:{_config.Port}{_config.Path}");
-}
 }

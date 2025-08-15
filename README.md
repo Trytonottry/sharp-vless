@@ -5,6 +5,11 @@
   <img src="https://img.shields.io/badge/license-MIT-green" alt="Лицензия" />
   <img src="https://img.shields.io/badge/platform-Windows-blue" alt="Платформа" />
   <img src="https://img.shields.io/badge/.NET-6.0-orange" alt=".NET" />
+  <img src="https://img.shields.io/github/actions/workflow/status/username/sharpvless/build.yml?branch=main" alt="CI/CD" />
+</p>
+
+<p align="center">
+  <img src="https://i.imgur.com/5XcF2qL.png" alt="Скриншот интерфейса" width="500"/>
 </p>
 
 > **SharpVLESS** — легковесный, open-source VLESS-клиент для Windows с поддержкой **WebSocket, TLS, REALITY**, локальным **SOCKS5-прокси** и интуитивным интерфейсом.  
@@ -31,7 +36,7 @@
 
 ### Вариант 1: Готовый установщик (рекомендуется)
 
-1. Скачайте последнюю версию с [Releases](https://github.com/Trytonottry/sharp-vless/releases)
+1. Скачайте последнюю версию с [Releases](https://github.com/Trytonottry/sharpvless/releases)
 2. Запустите `SharpVLESS-Setup.exe`
 3. Готово! Ярлык появится на рабочем столе.
 
@@ -101,7 +106,7 @@ SharpVLESS/
 ## 📦 Сборка из исходников
 
 ```bash
-git clone https://github.com/Trytonottry/sharp-vless.git
+git clone https://github.com/Trytonottry/sharpvless.git
 cd sharpvless
 dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
 ```
@@ -111,7 +116,7 @@ bin/Release/net6.0-windows/win-x64/publish/SharpVLESS.exe
 
 ## 📄 Лицензия 
 
-MIT © TryToNotTry 
+MIT © [TryToNotTry] 
 
 Свободно используй, модифицируй, распространяй — с указанием авторства. 
  
