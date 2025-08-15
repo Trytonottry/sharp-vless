@@ -6,6 +6,8 @@ using System.Windows.Media; // для SolidColorBrush
 using System.IO;                    // для File
 using System.Web;                   // для HttpUtility     
 using System.Net.Sockets;           // для NetworkStream
+using System.Windows.Controls;      // для TextBox, Button и т.д.
+using Microsoft.AspNetCore.WebUtilities; // для QueryHelpers
 
 namespace VlessClientApp
 {
