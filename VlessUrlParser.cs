@@ -3,6 +3,7 @@ using System;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Web;
+using Microsoft.AspNetCore.WebUtilities;
 
 public static class VlessUrlParser
 {
