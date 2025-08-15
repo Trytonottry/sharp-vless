@@ -11,6 +11,9 @@
 
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Include="MainWindow.xaml" />
   </ItemGroup>
 

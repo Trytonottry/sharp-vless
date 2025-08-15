@@ -1,0 +1,36 @@
+<Window x:Class="VlessClientApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="VLESS Client" Height="500" Width="600" WindowStyle="SingleBorderWindow" ResizeMode="CanResize" Icon="Resources/app.ico">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="TxtLink" Grid.Row="0" Margin="0,0,0,10" 
+                 Text="vless://..." FontSize="12"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <CheckBox x:Name="ChkAutoConnect" Content="Автозапуск подключения" 
+                      IsChecked="{Binding _config.AutoConnect}" Margin="0,0,15,0"/>
+            <CheckBox x:Name="ChkStartWithSystem" Content="Запускать с системой"
+                      IsChecked="{Binding _config.StartWithSystem}"/>
+        </StackPanel>
+
+        <Button x:Name="BtnConnect" Grid.Row="2" Content="Подключить" 
+                Click="BtnConnect_Click" Height="35" Margin="0,0,0,10" 
+                Background="#2196F3" Foreground="White" BorderBrush="#1976D2"/>
+
+        <TextBox Grid.Row="3" x:Name="TxtLog" Margin="0,0,0,10" 
+                 TextWrapping="Wrap" AcceptsReturn="True" 
+                 IsReadOnly="True" Background="#1e1e1e" Foreground="#00ff88" 
+                 FontFamily="Consolas" FontSize="11" />
+
+        <TextBlock Grid.Row="4" x:Name="TxtStatus" Foreground="Gray" 
+                   Text="Готов" FontSize="12" VerticalAlignment="Center"/>
+    </Grid>
+</Window>
