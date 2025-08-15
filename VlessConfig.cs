@@ -1,17 +1,17 @@
 public class VlessConfig
 {
-    public string Address { get; set; } = "";
+    public string UserId { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
     public int Port { get; set; }
-    public string UserId { get; set; } = "";
-    public string Sni { get; set; } = "";
-    public string Host { get; set; } = "";
+    public string Sni { get; set; } = string.Empty;
+    public string Host { get; set; } = string.Empty;
     public string Path { get; set; } = "/vless";
-    public bool AllowInsecure { get; set; } = false;
+    public bool AllowInsecure { get; set; }
     public string Security { get; set; } = "tls";
-    public string Type { get; set; } = "ws"; // ws, grpc
-    public string? Fingerprint { get; set; }
-    public string? PublicKey { get; set; } // для REALITY
-    public string? ShortId { get; set; }
-    public string? SpiderX { get; set; }
-    public string Flow { get; set; } = "";
+    public string PublicKey { get; set; } = string.Empty;
+    public string ShortId { get; set; } = string.Empty;
+    public string Fingerprint { get; set; } = "chrome";
+    public string SpiderX { get; set; } = string.Empty;
+    public string Flow { get; set; } = string.Empty;
+    public string Type { get; set; } = "ws"; // "ws" или "grpc"
 }
