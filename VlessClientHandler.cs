@@ -1,5 +1,8 @@
 using System.Net.WebSockets;
 using System.Security.Cryptography.X509Certificates;
+using System;
+using System.Net.Sockets; // для TcpClient, TcpListener
+using System.IO;          // для Stream
 
 public class VlessClientHandler
 {
