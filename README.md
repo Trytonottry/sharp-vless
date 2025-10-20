@@ -90,13 +90,13 @@
 
 ## 📂 Структура проекта
 SharpVLESS/
-├── MainWindow.xaml       # GUI
-├── VlessClientHandler.cs # Ядро подключения
-├── VlessUrlParser.cs     # Парсинг vless://
-├── ConfigManager.cs      # Сохранение настроек
-├── AutoStartManager.cs   # Автозапуск
-├── NotifyIconManager.cs  # Иконка в трее
-└── Resources/            # Иконки, лого
+- MainWindow.xaml       # GUI
+- VlessClientHandler.cs # Ядро подключения
+- VlessUrlParser.cs     # Парсинг vless://
+- ConfigManager.cs      # Сохранение настроек
+- AutoStartManager.cs   # Автозапуск
+- NotifyIconManager.cs  # Иконка в трее
+- Resources/            # Иконки, лого
 
 ## 📦 Сборка из исходников
 
